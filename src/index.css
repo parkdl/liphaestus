@@ -32,3 +32,8 @@ button {
     background-color: inherit;
     cursor: pointer;
 }
+
+ul,
+li {
+    list-style: none;
+}

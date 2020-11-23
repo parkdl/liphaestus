@@ -1,0 +1,21 @@
+.lists {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.lists_container {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.set_lists {
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+}

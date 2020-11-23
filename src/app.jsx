@@ -14,10 +14,10 @@ function App({ authService }) {
                         <Home authService={authService} />
                     </Route>
                     <Route exact path="/lists">
-                        <Lists />
+                        <Lists authService={authService} />
                     </Route>
                     <Route exact path="/profile">
-                        <Profile />
+                        <Profile authService={authService} />
                     </Route>
                 </Switch>
             </Router>

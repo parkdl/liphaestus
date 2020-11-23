@@ -8,7 +8,11 @@ const Header = ({ onLogout }) => {
                 <img className={styles.logo} src="/images/logo.png" alt="logo" />
                 <p>Liphaestus</p>
             </section>
-            {onLogout && <button className={styles.logout}>Logout</button>}
+            {onLogout && (
+                <button className={styles.logout} onClick={onLogout}>
+                    Logout
+                </button>
+            )}
         </header>
     );
 };
