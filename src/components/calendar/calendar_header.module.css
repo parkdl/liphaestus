@@ -1,0 +1,12 @@
+.header {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    font-weight: bold;
+}
+
+.previous,
+.next {
+    cursor: pointer;
+}
