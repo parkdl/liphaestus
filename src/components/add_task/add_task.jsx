@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styles from "./add_task.module.css";
 
-const AddTask = props => {
+const AddTask = ({ visible }) => {
     const selectOption = {
         category: {
             items: [
@@ -34,7 +34,7 @@ const AddTask = props => {
     };
 
     return (
-        <section className={styles.container}>
+        <section className={`${styles.container} ${styles[visible]}`}>
             <h1 className={styles.title}>Add Task</h1>
             <form action="" className={styles.add_task_form}>
                 <div className={styles.add_task}>

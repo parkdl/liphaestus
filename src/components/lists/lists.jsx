@@ -15,11 +15,27 @@ const Lists = ({ authService }) => {
     const historyState = useHistory().state;
 
     const [selectedDate, setSelectedDate] = useState(moment());
+    const [onAddTask, setAddTask] = useState("hidden");
+    const [onCalendar, setCalendar] = useState("hidden");
 
     const [userId, setUserId] = useState(historyState && historyState.id);
 
     const onLogout = () => {
         authService.logout();
+    };
+
+    const onClick = event => {
+        const value = event.target.innerHTML;
+        switch (value) {
+            case "Add":
+                onAddTask === "hidden" ? setAddTask("visible") : setAddTask("hidden");
+                break;
+            case "Calendar":
+                onCalendar === "hidden" ? setCalendar("visible") : setCalendar("hidden");
+                break;
+            default:
+                return;
+        }
     };
 
     useEffect(() => {
@@ -38,8 +54,16 @@ const Lists = ({ authService }) => {
 
             <section className={styles.lists_container}>
                 <section className={styles.set_lists}>
-                    <AddTask />
-                    <Calendar value={selectedDate} onChange={setSelectedDate} />
+                    <div className={styles.btns}>
+                        <button className={styles.calendar} onClick={onClick}>
+                            <span>Calendar</span>
+                        </button>
+                        <button className={styles.add} onClick={onClick}>
+                            <span>Add</span>
+                        </button>
+                    </div>
+                    <AddTask visible={onAddTask} />
+                    <Calendar value={selectedDate} onChange={setSelectedDate} visible={onCalendar} />
                 </section>
 
                 <DisplayLists />

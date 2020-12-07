@@ -29,3 +29,13 @@
     background-color: white;
     margin-right: 1.5rem;
 }
+
+@media screen and (max-width: 26rem) {
+    .header {
+        padding: 0 0.25rem;
+    }
+
+    .logout {
+        margin-right: 0.25rem;
+    }
+}

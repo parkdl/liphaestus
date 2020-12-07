@@ -27,6 +27,7 @@
     width: 100%;
     height: 2rem;
     padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 .add_option {
@@ -45,20 +46,28 @@
 }
 
 .lists .item {
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
     padding: 0.5rem;
     cursor: pointer;
 }
 
-.lists .item:hover {
-    background-color: #00bbff;
-    color: white;
+.lists.category .item:hover {
+    background-color: #a4a0ff;
 }
 
-.lists .selected {
-    background-color: #9bc3ff;
-    color: white;
+.lists.category .selected {
+    background-color: #a4a0ff;
+    border: none;
+}
+
+.lists.priority .item:hover {
+    background-color: #7effd4;
+}
+
+.lists.priority .selected {
+    background-color: #7effd4;
+    border: none;
 }
 
 .add_btn {
@@ -69,11 +78,23 @@
 
 .add_btn button {
     width: 70%;
-    border: 1px solid black;
     padding: 0.5rem 0;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
     color: white;
     background-color: chocolate;
+}
+
+@media screen and (max-width: 26rem) {
+    .container {
+        display: none;
+    }
+    .visible {
+        display: flex;
+    }
+
+    .hidden {
+        display: none;
+    }
 }

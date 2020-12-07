@@ -1,0 +1,167 @@
+.container {
+    width: 90%;
+    margin: 0.25rem 0;
+}
+
+.list {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.front {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    display: block;
+    position: relative;
+    top: -25%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
+.checkbox:hover input ~ .checkMark {
+    background-color: #ccc;
+}
+
+.checkbox input:checked ~ .checkMark {
+    background-color: #2196f3;
+}
+
+.checkMark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox input:checked ~ .checkMark:after {
+    display: block;
+}
+
+.checkbox .checkMark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.mid {
+    flex: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.mid .box_top {
+    display: flex;
+    margin-bottom: 0.5rem;
+    width: 90%;
+}
+
+.box_top .list_value {
+    margin-right: 1rem;
+    font-size: 1.15rem;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.box_top .edit {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mid .box_bottom {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+}
+
+.pomodoro {
+    display: flex;
+}
+
+.pomodoro .title {
+    border-radius: 5px;
+    padding: 0 0.25rem;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    background-color: #f9acac;
+}
+
+.pomodoro .timer {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.pomodoro .timer_controler {
+    display: flex;
+}
+
+.timer_controler li {
+    padding: 0 0.25rem;
+    cursor: pointer;
+
+    border-radius: 5px;
+}
+
+.info_list {
+    display: flex;
+}
+
+.info_list li {
+    border-radius: 5px;
+    padding: 0 0.25rem;
+    margin: 0 0.25rem;
+    font-weight: bold;
+}
+
+.category {
+    background-color: #a4a0ff;
+}
+
+.priority {
+    background-color: #7effd4;
+}
+
+.end {
+    display: flex;
+    align-items: center;
+}
+
+.end span {
+    cursor: pointer;
+}
