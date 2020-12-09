@@ -1,8 +1,9 @@
 import React from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import styles from "./add_task.module.css";
 
-const AddTask = ({ visible }) => {
+const AddTask = ({ visible, addTask }) => {
     const selectOption = {
         category: {
             items: [
@@ -25,6 +26,25 @@ const AddTask = ({ visible }) => {
     const [categoryId, setCategoryId] = useState();
     const [priorityId, setPriorityId] = useState();
 
+    const taskRef = useRef();
+    const formRef = useRef();
+
+    const onSubmit = event => {
+        event.preventDefault();
+
+        const dayTask = {
+            id: Date.now(),
+            task: taskRef.current.value || "",
+            category: categoryId || "",
+            priority: priorityId || ""
+        };
+
+        formRef.current.reset();
+        setCategoryId(null);
+        setPriorityId(null);
+        addTask(dayTask);
+    };
+
     const selectCategory = id => {
         setCategoryId(id);
     };
@@ -36,9 +56,9 @@ const AddTask = ({ visible }) => {
     return (
         <section className={`${styles.container} ${styles[visible]}`}>
             <h1 className={styles.title}>Add Task</h1>
-            <form action="" className={styles.add_task_form}>
+            <form ref={formRef} className={styles.add_task_form}>
                 <div className={styles.add_task}>
-                    <input type="text" placeholder="Add Task..." />
+                    <input ref={taskRef} type="text" placeholder="Add Task..." />
                 </div>
                 <div className={styles.add_option}>
                     <h2>Category</h2>
@@ -46,6 +66,7 @@ const AddTask = ({ visible }) => {
                         {selectOption.category.items.map(item => (
                             <li
                                 key={item.id}
+                                value={item.id}
                                 id={item.id}
                                 className={`${styles.item} ${categoryId === item.id && `${styles.selected}`}`}
                                 onClick={() => selectCategory(item.id)}
@@ -61,6 +82,7 @@ const AddTask = ({ visible }) => {
                         {selectOption.priority.items.map(item => (
                             <li
                                 key={item.id}
+                                value={item.id}
                                 id={item.id}
                                 className={`${styles.item} ${priorityId === item.id && `${styles.selected}`}`}
                                 onClick={() => selectPriority(item.id)}
@@ -70,7 +92,7 @@ const AddTask = ({ visible }) => {
                         ))}
                     </ul>
                 </div>
-                <div className={styles.add_btn}>
+                <div className={styles.add_btn} onClick={onSubmit}>
                     <button>Add</button>
                 </div>
             </form>

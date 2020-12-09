@@ -5,7 +5,7 @@ import Home from "./components/home/home";
 import Profile from "./components/profile/profile";
 import Lists from "./components/lists/lists";
 
-function App({ authService }) {
+function App({ authService, taskDatabase }) {
     return (
         <div className={styles.app}>
             <Router>
@@ -14,7 +14,7 @@ function App({ authService }) {
                         <Home authService={authService} />
                     </Route>
                     <Route exact path="/lists">
-                        <Lists authService={authService} />
+                        <Lists authService={authService} taskDatabase={taskDatabase} />
                     </Route>
                     <Route exact path="/profile">
                         <Profile authService={authService} />

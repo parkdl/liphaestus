@@ -10,7 +10,7 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./lists.module.css";
 
-const Lists = ({ authService }) => {
+const Lists = ({ authService, taskDatabase }) => {
     const history = useHistory();
     const historyState = useHistory().state;
 
@@ -19,7 +19,7 @@ const Lists = ({ authService }) => {
     const [onCalendar, setCalendar] = useState("hidden");
 
     const [userId, setUserId] = useState(historyState && historyState.id);
-
+    console.log(selectedDate);
     const onLogout = () => {
         authService.logout();
     };
@@ -36,6 +36,16 @@ const Lists = ({ authService }) => {
             default:
                 return;
         }
+    };
+
+    const addTask = task => {
+        const dateValue = {
+            year: moment().format("YYYY"),
+            month: moment().format("MMM"),
+            day: moment().format("D")
+        };
+
+        taskDatabase.saveTask(userId, dateValue, task);
     };
 
     useEffect(() => {
@@ -62,7 +72,7 @@ const Lists = ({ authService }) => {
                             <span>Add</span>
                         </button>
                     </div>
-                    <AddTask visible={onAddTask} />
+                    <AddTask visible={onAddTask} addTask={addTask} />
                     <Calendar value={selectedDate} onChange={setSelectedDate} visible={onCalendar} />
                 </section>
 
