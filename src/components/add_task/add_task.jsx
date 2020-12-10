@@ -23,8 +23,8 @@ const AddTask = ({ visible, addTask }) => {
         }
     };
 
-    const [categoryId, setCategoryId] = useState();
-    const [priorityId, setPriorityId] = useState();
+    const [categoryItem, setCategoryItem] = useState({});
+    const [priorityItem, setPriorityItem] = useState({});
 
     const taskRef = useRef();
     const formRef = useRef();
@@ -35,22 +35,28 @@ const AddTask = ({ visible, addTask }) => {
         const dayTask = {
             id: Date.now(),
             task: taskRef.current.value || "",
-            category: categoryId || "",
-            priority: priorityId || ""
+            category: categoryItem.name || "",
+            priority: priorityItem.name || ""
         };
 
         formRef.current.reset();
-        setCategoryId(null);
-        setPriorityId(null);
+        setCategoryItem({});
+        setPriorityItem({});
         addTask(dayTask);
     };
 
-    const selectCategory = id => {
-        setCategoryId(id);
+    const selectCategory = item => {
+        setCategoryItem({
+            id: item.id,
+            name: item.name
+        });
     };
 
-    const selectPriority = id => {
-        setPriorityId(id);
+    const selectPriority = item => {
+        setPriorityItem({
+            id: item.id,
+            name: item.name
+        });
     };
 
     return (
@@ -66,10 +72,9 @@ const AddTask = ({ visible, addTask }) => {
                         {selectOption.category.items.map(item => (
                             <li
                                 key={item.id}
-                                value={item.id}
                                 id={item.id}
-                                className={`${styles.item} ${categoryId === item.id && `${styles.selected}`}`}
-                                onClick={() => selectCategory(item.id)}
+                                className={`${styles.item} ${categoryItem.id === item.id && `${styles.selected}`}`}
+                                onClick={() => selectCategory(item)}
                             >
                                 {item.name}
                             </li>
@@ -82,10 +87,9 @@ const AddTask = ({ visible, addTask }) => {
                         {selectOption.priority.items.map(item => (
                             <li
                                 key={item.id}
-                                value={item.id}
                                 id={item.id}
-                                className={`${styles.item} ${priorityId === item.id && `${styles.selected}`}`}
-                                onClick={() => selectPriority(item.id)}
+                                className={`${styles.item} ${priorityItem.id === item.id && `${styles.selected}`}`}
+                                onClick={() => selectPriority(item)}
                             >
                                 {item.name}
                             </li>

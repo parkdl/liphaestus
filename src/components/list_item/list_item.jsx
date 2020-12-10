@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./list_item.module.css";
 
-const ListItem = props => {
+const ListItem = ({ list, deleteTask }) => {
+    const onSubmit = () => {
+        deleteTask(list.id);
+    };
+
     return (
         <section className={styles.container}>
             <div className={styles.list}>
@@ -13,7 +17,7 @@ const ListItem = props => {
                 </div>
                 <div className={styles.mid}>
                     <div className={styles.box_top}>
-                        <p className={styles.list_value}>'userId' is assigned a value but never used. seakthksdklfsl sdkl</p>
+                        <p className={styles.list_value}>{list.task}</p>
                         <div className={styles.edit}>
                             <i className="fas fa-cog"></i>
                         </div>
@@ -42,12 +46,12 @@ const ListItem = props => {
                             </ul>
                         </div>
                         <ul className={styles.info_list}>
-                            <li className={styles.category}>C</li>
-                            <li className={styles.priority}>1</li>
+                            <li className={styles.category}>{list.category}</li>
+                            <li className={styles.priority}>{list.priority}</li>
                         </ul>
                     </div>
                 </div>
-                <div className={styles.end}>
+                <div className={styles.end} onClick={onSubmit}>
                     <span>
                         <i className="fas fa-times"></i>
                     </span>
