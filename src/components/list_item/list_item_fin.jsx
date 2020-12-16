@@ -1,15 +1,7 @@
 import React from "react";
 import styles from "./list_item.module.css";
 
-const ListItem = ({ list, deleteTask, update, compare }) => {
-    const onSubmit = () => {
-        deleteTask(list.id);
-    };
-
-    const onClick = () => {
-        update(list);
-    };
-
+const ListItemFin = ({ list }) => {
     return (
         <section className={styles.container}>
             <div className={styles.list}>
@@ -22,7 +14,7 @@ const ListItem = ({ list, deleteTask, update, compare }) => {
                 <div className={styles.mid}>
                     <div className={styles.box_top}>
                         <p className={styles.list_value}>{list.task}</p>
-                        <div className={styles.edit} onClick={onClick}>
+                        <div className={styles.edit}>
                             <i className="fas fa-cog"></i>
                         </div>
                     </div>
@@ -55,7 +47,7 @@ const ListItem = ({ list, deleteTask, update, compare }) => {
                         </ul>
                     </div>
                 </div>
-                <div className={styles.end} onClick={onSubmit}>
+                <div className={styles.end}>
                     <span>
                         <i className="fas fa-times"></i>
                     </span>
@@ -65,4 +57,4 @@ const ListItem = ({ list, deleteTask, update, compare }) => {
     );
 };
 
-export default ListItem;
+export default ListItemFin;

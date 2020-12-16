@@ -42,6 +42,7 @@ const Calendar = ({ value, onChange, visible }) => {
         if (isToday(day)) return "today";
         return "";
     };
+
     return (
         <section className={`${styles.container} ${styles[visible]}`}>
             <CalendarHeader value={value} onChange={onChange} />

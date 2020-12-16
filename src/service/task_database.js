@@ -5,7 +5,7 @@ class TaskDatabase {
         const ref = firebaseDatabase.ref(`${userId}/${date.year}/${date.month}/${date.day}`);
         ref.on("value", snapshot => {
             const value = snapshot.val();
-            value && onUpdate(value);
+            value ? onUpdate(value) : onUpdate({});
         });
         return () => ref.off();
     }

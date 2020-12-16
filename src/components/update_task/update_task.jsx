@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import styles from "./add_task.module.css";
+import styles from "./update_task.module.css";
 
-const AddTask = ({ visible, addTask }) => {
+const UpdataTask = ({ visible, addTask, list }) => {
     const selectOption = {
         category: {
             items: [
@@ -33,18 +33,16 @@ const AddTask = ({ visible, addTask }) => {
         event.preventDefault();
 
         const dayTask = {
-            id: Date.now(),
+            id: list.id,
             task: taskRef.current.value || null,
             category: categoryItem.name || null,
-            priority: priorityItem.name || null,
-            finished: null,
-            time: null
+            priority: priorityItem.name || null
         };
 
         formRef.current.reset();
         setCategoryItem({});
         setPriorityItem({});
-        console.log(dayTask);
+
         if ((dayTask.task || dayTask.category || dayTask.priority) === null) {
             alert("빈 칸을 채워주세요");
         } else {
@@ -54,24 +52,31 @@ const AddTask = ({ visible, addTask }) => {
 
     const selectCategory = item => {
         setCategoryItem({
-            id: item.id,
             name: item.name
         });
     };
 
     const selectPriority = item => {
         setPriorityItem({
-            id: item.id,
             name: item.name
         });
     };
+
+    useEffect(() => {
+        setCategoryItem({
+            name: list.category
+        });
+        setPriorityItem({
+            name: list.priority
+        });
+    }, [list.category, list.priority]);
 
     return (
         <section className={`${styles.container} ${styles[visible]}`}>
             <h1 className={styles.title}>Add Task</h1>
             <form ref={formRef} className={styles.add_task_form}>
                 <div className={styles.add_task}>
-                    <input ref={taskRef} type="text" placeholder="Add Task..." />
+                    <input ref={taskRef} type="text" placeholder="Add Task..." defaultValue={list.task} />
                 </div>
                 <div className={styles.add_option}>
                     <h2>Category</h2>
@@ -80,7 +85,7 @@ const AddTask = ({ visible, addTask }) => {
                             <li
                                 key={item.id}
                                 id={item.id}
-                                className={`${styles.item} ${categoryItem.id === item.id && `${styles.selected}`}`}
+                                className={`${styles.item} ${categoryItem.name === item.name && `${styles.selected}`} `}
                                 onClick={() => selectCategory(item)}
                             >
                                 {item.name}
@@ -95,7 +100,7 @@ const AddTask = ({ visible, addTask }) => {
                             <li
                                 key={item.id}
                                 id={item.id}
-                                className={`${styles.item} ${priorityItem.id === item.id && `${styles.selected}`}`}
+                                className={`${styles.item} ${priorityItem.name === item.name && `${styles.selected}`}`}
                                 onClick={() => selectPriority(item)}
                             >
                                 {item.name}
@@ -104,11 +109,11 @@ const AddTask = ({ visible, addTask }) => {
                     </ul>
                 </div>
                 <div className={styles.add_btn} onClick={onSubmit}>
-                    <button>Add</button>
+                    <button>Update</button>
                 </div>
             </form>
         </section>
     );
 };
 
-export default AddTask;
+export default UpdataTask;

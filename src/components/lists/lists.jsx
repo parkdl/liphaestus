@@ -9,15 +9,19 @@ import DisplayLists from "../display_lists/display_lists";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./lists.module.css";
+import UpdataTask from "../update_task/update_task";
 
 const Lists = ({ authService, taskDatabase }) => {
     const history = useHistory();
     const historyState = useHistory().state;
 
     const [selectedDate, setSelectedDate] = useState(moment());
+
     const [onAddTask, setAddTask] = useState("hidden");
     const [onCalendar, setCalendar] = useState("hidden");
     const [toDoLists, setToDoLists] = useState({});
+    const [onUpdate, setUpdate] = useState(false);
+    const [updateData, setUpdateData] = useState({});
 
     const [userId, setUserId] = useState(historyState && historyState.id);
 
@@ -52,6 +56,13 @@ const Lists = ({ authService, taskDatabase }) => {
             day: moment().format("D")
         };
         taskDatabase.saveTask(userId, dateValue, task);
+        setUpdate(false);
+        setUpdateData({});
+    };
+
+    const getUpdate = list => {
+        setUpdateData(list);
+        setUpdate(true);
     };
 
     const deleteList = id => {
@@ -69,6 +80,13 @@ const Lists = ({ authService, taskDatabase }) => {
         taskDatabase.deleteTask(userId, dateValue, id);
     };
 
+    const compareDate = () => {
+        const now = `${moment().format("YYYY")}.${moment().format("MMM")}.${moment().format("D")}`;
+        const selected = `${selectedDate.format("YYYY")}.${selectedDate.format("MMM")}.${selectedDate.format("D")}`;
+
+        return now === selected && true;
+    };
+
     useEffect(() => {
         authService.onAuthChange(user => {
             if (user) {
@@ -84,16 +102,17 @@ const Lists = ({ authService, taskDatabase }) => {
             return;
         }
         const dateValue = {
-            year: moment().format("YYYY"),
-            month: moment().format("MMM"),
-            day: moment().format("D")
+            year: selectedDate.format("YYYY"),
+            month: selectedDate.format("MMM"),
+            day: selectedDate.format("D")
         };
 
         const stopSync = taskDatabase.syncLists(userId, dateValue, lists => {
             setToDoLists(lists);
         });
+
         return () => stopSync();
-    }, [taskDatabase, userId]);
+    }, [selectedDate, taskDatabase, userId]);
 
     return (
         <section className={styles.lists}>
@@ -109,11 +128,16 @@ const Lists = ({ authService, taskDatabase }) => {
                             <span>Add</span>
                         </button>
                     </div>
-                    <AddTask visible={onAddTask} addTask={addOrUpdateTask} />
+                    {!onUpdate ? (
+                        <AddTask visible={onAddTask} addTask={addOrUpdateTask} />
+                    ) : (
+                        <UpdataTask visible={onAddTask} addTask={addOrUpdateTask} list={updateData} />
+                    )}
+
                     <Calendar value={selectedDate} onChange={setSelectedDate} visible={onCalendar} />
                 </section>
 
-                <DisplayLists lists={toDoLists} deleteTask={deleteList} />
+                <DisplayLists lists={toDoLists} deleteTask={deleteList} update={getUpdate} compare={compareDate} />
             </section>
 
             <Footer />
