@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./list_item.module.css";
 
-const ListItem = ({ list, deleteTask, update, compare }) => {
+const ListItem = ({ list, deleteTask, update, finished }) => {
+    const [finishTask, setFinishTask] = useState(true);
+
     const onSubmit = () => {
         deleteTask(list.id);
     };
@@ -10,12 +12,20 @@ const ListItem = ({ list, deleteTask, update, compare }) => {
         update(list);
     };
 
+    const onCheckbox = () => {
+        finishTask ? setFinishTask(false) : setFinishTask(true);
+
+        list.finished = finishTask;
+
+        finished(list);
+    };
+
     return (
         <section className={styles.container}>
             <div className={styles.list}>
                 <div className={styles.front}>
                     <label className={styles.checkbox}>
-                        <input type="checkbox" />
+                        {list.finished ? <input type="checkbox" onClick={onCheckbox} checked /> : <input type="checkbox" onClick={onCheckbox} />}
                         <span className={styles.checkMark}></span>
                     </label>
                 </div>

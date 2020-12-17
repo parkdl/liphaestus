@@ -24,7 +24,7 @@ const Lists = ({ authService, taskDatabase }) => {
     const [updateData, setUpdateData] = useState({});
 
     const [userId, setUserId] = useState(historyState && historyState.id);
-
+    console.log(toDoLists);
     const onLogout = () => {
         authService.logout();
     };
@@ -41,6 +41,21 @@ const Lists = ({ authService, taskDatabase }) => {
             default:
                 return;
         }
+    };
+
+    const finishedOrTimer = item => {
+        setToDoLists(toDoLists => {
+            const updated = { ...toDoLists };
+            updated[item.id] = item;
+            return updated;
+        });
+
+        const dateValue = {
+            year: moment().format("YYYY"),
+            month: moment().format("MMM"),
+            day: moment().format("D")
+        };
+        taskDatabase.saveTask(userId, dateValue, item);
     };
 
     const addOrUpdateTask = task => {
@@ -137,7 +152,7 @@ const Lists = ({ authService, taskDatabase }) => {
                     <Calendar value={selectedDate} onChange={setSelectedDate} visible={onCalendar} />
                 </section>
 
-                <DisplayLists lists={toDoLists} deleteTask={deleteList} update={getUpdate} compare={compareDate} />
+                <DisplayLists lists={toDoLists} deleteTask={deleteList} update={getUpdate} compare={compareDate} finished={finishedOrTimer} />
             </section>
 
             <Footer />

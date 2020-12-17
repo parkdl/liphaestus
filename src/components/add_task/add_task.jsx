@@ -37,15 +37,15 @@ const AddTask = ({ visible, addTask }) => {
             task: taskRef.current.value || null,
             category: categoryItem.name || null,
             priority: priorityItem.name || null,
-            finished: null,
-            time: null
+            finished: false,
+            time: "min"
         };
 
         formRef.current.reset();
         setCategoryItem({});
         setPriorityItem({});
         console.log(dayTask);
-        if ((dayTask.task || dayTask.category || dayTask.priority) === null) {
+        if (dayTask.task === null || dayTask.category === null || dayTask.priority === null) {
             alert("빈 칸을 채워주세요");
         } else {
             addTask(dayTask);

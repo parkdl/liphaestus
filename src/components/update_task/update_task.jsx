@@ -36,7 +36,9 @@ const UpdataTask = ({ visible, addTask, list }) => {
             id: list.id,
             task: taskRef.current.value || null,
             category: categoryItem.name || null,
-            priority: priorityItem.name || null
+            priority: priorityItem.name || null,
+            finished: list.finished,
+            time: list.time
         };
 
         formRef.current.reset();
