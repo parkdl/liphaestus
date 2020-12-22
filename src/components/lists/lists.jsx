@@ -24,7 +24,7 @@ const Lists = ({ authService, taskDatabase }) => {
     const [updateData, setUpdateData] = useState({});
 
     const [userId, setUserId] = useState(historyState && historyState.id);
-    console.log(toDoLists);
+
     const onLogout = () => {
         authService.logout();
     };

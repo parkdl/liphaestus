@@ -44,7 +44,7 @@ const AddTask = ({ visible, addTask }) => {
         formRef.current.reset();
         setCategoryItem({});
         setPriorityItem({});
-        console.log(dayTask);
+
         if (dayTask.task === null || dayTask.category === null || dayTask.priority === null) {
             alert("빈 칸을 채워주세요");
         } else {

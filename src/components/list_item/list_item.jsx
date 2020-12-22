@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./list_item.module.css";
+import Pomodoro from "../pomodoro/pomodoro";
 
 const ListItem = ({ list, deleteTask, update, finished }) => {
     const [finishTask, setFinishTask] = useState(true);
@@ -37,28 +38,8 @@ const ListItem = ({ list, deleteTask, update, finished }) => {
                         </div>
                     </div>
                     <div className={styles.box_bottom}>
-                        <div className={styles.pomodoro}>
-                            <div className={styles.title}>
-                                <span>P</span>
-                            </div>
-                            <div className={styles.timer}>
-                                <span>00:00</span>
-                            </div>
-                            <ul className={styles.timer_controler}>
-                                <li>
-                                    <i className="fas fa-sort-up"></i>
-                                </li>
-                                <li>
-                                    <i className="fas fa-sort-down"></i>
-                                </li>
-                                <li>
-                                    <i className="fas fa-play"></i>
-                                </li>
-                                <li>
-                                    <i className="fas fa-stop"></i>
-                                </li>
-                            </ul>
-                        </div>
+                        <Pomodoro />
+
                         <ul className={styles.info_list}>
                             <li className={styles.category}>{list.category}</li>
                             <li className={styles.priority}>{list.priority}</li>
