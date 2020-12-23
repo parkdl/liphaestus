@@ -45,7 +45,7 @@ const UpdataTask = ({ visible, addTask, list }) => {
         setCategoryItem({});
         setPriorityItem({});
 
-        if ((dayTask.task || dayTask.category || dayTask.priority) === null) {
+        if (dayTask.task === null || dayTask.category === null || dayTask.priority === null) {
             alert("빈 칸을 채워주세요");
         } else {
             addTask(dayTask);
@@ -75,7 +75,7 @@ const UpdataTask = ({ visible, addTask, list }) => {
 
     return (
         <section className={`${styles.container} ${styles[visible]}`}>
-            <h1 className={styles.title}>Add Task</h1>
+            <h1 className={styles.title}>Update Task</h1>
             <form ref={formRef} className={styles.add_task_form}>
                 <div className={styles.add_task}>
                     <input ref={taskRef} type="text" placeholder="Add Task..." defaultValue={list.task} />

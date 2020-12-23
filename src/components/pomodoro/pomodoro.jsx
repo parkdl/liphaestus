@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./pomodoro.module.css";
 
-const Pomodoro = props => {
+const Pomodoro = ({ getTime }) => {
     const [pomodoroTime, setPomodoroTime] = useState({
         total: 0,
         min: "0",
         sec: "0"
     });
+    const [saveTotalTime, setSaveTotalTime] = useState(null);
+
     const [status, setStatus] = useState(false);
     const [pause, setPause] = useState(false);
 
@@ -45,6 +47,31 @@ const Pomodoro = props => {
               });
     };
 
+    const startTimer = () => {
+        setSaveTotalTime(pomodoroTime.total);
+        setStatus(true);
+        setPause(true);
+    };
+
+    const stopTimer = useCallback(() => {
+        const remainTime = saveTotalTime - pomodoroTime.total;
+
+        getTime(remainTime);
+
+        setStatus(false);
+        setPause(false);
+        setPomodoroTime({
+            total: 0,
+            min: "0",
+            sec: "0"
+        });
+    }, [getTime, pomodoroTime.total, saveTotalTime]);
+
+    const pauseTimer = () => {
+        setPause(false);
+        setStatus(false);
+    };
+
     useEffect(() => {
         let setTimer = null;
         let time = pomodoroTime.total;
@@ -61,32 +88,13 @@ const Pomodoro = props => {
                     sec: sec
                 });
             }, 1000);
-            time < 0 && stopTimer();
+
+            time === 0 && stopTimer();
         } else if (!status && time !== 0) {
             clearInterval(setTimer);
         }
         return () => clearInterval(setTimer);
-    }, [pomodoroTime.total, status]);
-
-    const startTimer = () => {
-        setStatus(true);
-        setPause(true);
-    };
-
-    const stopTimer = () => {
-        setStatus(false);
-        setPause(false);
-        setPomodoroTime({
-            total: 0,
-            min: "0",
-            sec: "0"
-        });
-    };
-
-    const pauseTimer = () => {
-        setPause(false);
-        setStatus(false);
-    };
+    }, [getTime, pomodoroTime.total, saveTotalTime, status, stopTimer]);
 
     return (
         <div className={styles.pomodoro}>

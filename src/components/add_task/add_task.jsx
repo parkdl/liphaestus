@@ -38,7 +38,7 @@ const AddTask = ({ visible, addTask }) => {
             category: categoryItem.name || null,
             priority: priorityItem.name || null,
             finished: false,
-            time: "min"
+            time: 0
         };
 
         formRef.current.reset();

@@ -21,6 +21,11 @@ const ListItem = ({ list, deleteTask, update, finished }) => {
         finished(list);
     };
 
+    const getPomodoroTime = time => {
+        list.time += time;
+        finished(list);
+    };
+
     return (
         <section className={styles.container}>
             <div className={styles.list}>
@@ -38,7 +43,7 @@ const ListItem = ({ list, deleteTask, update, finished }) => {
                         </div>
                     </div>
                     <div className={styles.box_bottom}>
-                        <Pomodoro />
+                        <Pomodoro getTime={getPomodoroTime} />
 
                         <ul className={styles.info_list}>
                             <li className={styles.category}>{list.category}</li>

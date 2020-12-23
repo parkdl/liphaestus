@@ -90,8 +90,13 @@
     .container {
         display: none;
     }
+
+    .title {
+        text-align: center;
+    }
+
     .visible {
-        display: flex;
+        display: block;
     }
 
     .hidden {
