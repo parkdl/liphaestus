@@ -1,7 +1,14 @@
 import React from "react";
+
 import styles from "./header.module.css";
 
-const Header = ({ onLogout }) => {
+const Header = ({ onLogout, path }) => {
+    const movePath = () => {
+        const pathname = path.location.pathname;
+
+        pathname === "/lists" ? path.push("/analysis") : path.push("/lists");
+    };
+
     return (
         <header className={styles.header}>
             <section className={styles.logoContainer}>
@@ -9,9 +16,14 @@ const Header = ({ onLogout }) => {
                 <p>Liphaestus</p>
             </section>
             {onLogout && (
-                <button className={styles.logout} onClick={onLogout}>
-                    Logout
-                </button>
+                <section>
+                    <button className={styles.analysis} onClick={movePath}>
+                        {path.location.pathname === "/lists" ? "Analysis" : "Lists"}
+                    </button>
+                    <button className={styles.logout} onClick={onLogout}>
+                        Logout
+                    </button>
+                </section>
             )}
         </header>
     );

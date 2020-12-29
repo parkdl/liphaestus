@@ -4,15 +4,16 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 
 import AddTask from "../add_task/add_task";
-import Calendar from "../calendar/calendar";
+import Calendar from "../../calendar/calendar";
 import DisplayLists from "../display_lists/display_lists";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Footer from "../../footer/footer";
+import Header from "../../header/header";
 import styles from "./lists.module.css";
 import UpdataTask from "../update_task/update_task";
 
 const Lists = ({ authService, taskDatabase }) => {
     const history = useHistory();
+
     const historyState = useHistory().state;
 
     const [selectedDate, setSelectedDate] = useState(moment());
@@ -131,7 +132,7 @@ const Lists = ({ authService, taskDatabase }) => {
 
     return (
         <section className={styles.lists}>
-            <Header onLogout={onLogout} />
+            <Header onLogout={onLogout} path={history} />
 
             <section className={styles.lists_container}>
                 <section className={styles.set_lists}>

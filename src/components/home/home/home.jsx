@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Footer from "../../footer/footer";
+import Header from "../../header/header";
 import SignIn from "../signIn/signIn";
 import SignUp from "../signUp/signUp";
 import styles from "./home.module.css";
