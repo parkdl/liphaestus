@@ -57,7 +57,7 @@ const Analysis = ({ authService, taskDatabase }) => {
             <Header onLogout={onLogout} path={history} />
             <section className={styles.container}>
                 {mainItem === "Calendar" && <Calendar value={selectedDate} onChange={setSelectedDate} visible={"visible"} />}
-                {mainItem === "Daily" && <Daily />}
+                {mainItem === "Daily" && <Daily lists={toDoLists} />}
                 {mainItem === "Weekly" && <Weekly />}
                 {mainItem === "Monthly" && <Monthly />}
             </section>

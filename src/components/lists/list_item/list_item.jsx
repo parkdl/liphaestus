@@ -31,7 +31,11 @@ const ListItem = ({ list, deleteTask, update, finished }) => {
             <div className={styles.list}>
                 <div className={styles.front}>
                     <label className={styles.checkbox}>
-                        {list.finished ? <input type="checkbox" onClick={onCheckbox} checked /> : <input type="checkbox" onClick={onCheckbox} />}
+                        {list.finished ? (
+                            <input type="checkbox" onClick={onCheckbox} defaultChecked />
+                        ) : (
+                            <input type="checkbox" onClick={onCheckbox} />
+                        )}
                         <span className={styles.checkMark}></span>
                     </label>
                 </div>
