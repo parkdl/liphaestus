@@ -53,7 +53,8 @@ const Lists = ({ authService, taskDatabase }) => {
 
         const dateValue = {
             year: moment().format("YYYY"),
-            month: moment().format("MMM"),
+            month: moment().format("Mo"),
+            weekOfYear: moment().format("W"),
             day: moment().format("D")
         };
         taskDatabase.saveTask(userId, dateValue, item);
@@ -68,7 +69,8 @@ const Lists = ({ authService, taskDatabase }) => {
 
         const dateValue = {
             year: moment().format("YYYY"),
-            month: moment().format("MMM"),
+            month: moment().format("Mo"),
+            weekOfYear: moment().format("W"),
             day: moment().format("D")
         };
         taskDatabase.saveTask(userId, dateValue, task);
@@ -90,15 +92,16 @@ const Lists = ({ authService, taskDatabase }) => {
 
         const dateValue = {
             year: moment().format("YYYY"),
-            month: moment().format("MMM"),
+            month: moment().format("Mo"),
+            weekOfYear: moment().format("W"),
             day: moment().format("D")
         };
         taskDatabase.deleteTask(userId, dateValue, id);
     };
 
     const compareDate = () => {
-        const now = `${moment().format("YYYY")}.${moment().format("MMM")}.${moment().format("D")}`;
-        const selected = `${selectedDate.format("YYYY")}.${selectedDate.format("MMM")}.${selectedDate.format("D")}`;
+        const now = `${moment().format("YYYY")}.${moment().format("Mo")}.${moment().format("D")}`;
+        const selected = `${selectedDate.format("YYYY")}.${selectedDate.format("Mo")}.${selectedDate.format("D")}`;
 
         return now === selected && true;
     };
@@ -119,7 +122,8 @@ const Lists = ({ authService, taskDatabase }) => {
         }
         const dateValue = {
             year: selectedDate.format("YYYY"),
-            month: selectedDate.format("MMM"),
+            month: selectedDate.format("Mo"),
+            weekOfYear: moment().format("W"),
             day: selectedDate.format("D")
         };
 

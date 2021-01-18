@@ -7,18 +7,18 @@ const AddTask = ({ visible, addTask }) => {
     const selectOption = {
         category: {
             items: [
-                { id: 1, name: "Work" },
-                { id: 2, name: "Study" },
-                { id: 3, name: "Hobby" },
-                { id: 4, name: "ETC" }
+                { id: 1, name: "Work", data: "work" },
+                { id: 2, name: "Study", data: "study" },
+                { id: 3, name: "Hobby", data: "hobby" },
+                { id: 4, name: "ETC", data: "etc" }
             ]
         },
         priority: {
             items: [
-                { id: 5, name: "1" },
-                { id: 6, name: "2" },
-                { id: 7, name: "3" },
-                { id: 8, name: "4" }
+                { id: 5, name: "1st" },
+                { id: 6, name: "2nd" },
+                { id: 7, name: "3rd" },
+                { id: 8, name: "4th" }
             ]
         }
     };
@@ -55,7 +55,7 @@ const AddTask = ({ visible, addTask }) => {
     const selectCategory = item => {
         setCategoryItem({
             id: item.id,
-            name: item.name
+            name: item.data
         });
     };
 

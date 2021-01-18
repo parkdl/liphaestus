@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
@@ -17,6 +17,8 @@ const Analysis = ({ authService, taskDatabase }) => {
     const [userId, setUserId] = useState(historyState && historyState.id);
     const [selectedDate, setSelectedDate] = useState(moment());
     const [toDoLists, setToDoLists] = useState({});
+    const [weeklyList, setWeeklyList] = useState({});
+    const [monthlyList, setMonthlyList] = useState({});
 
     const [mainItem, setMainItem] = useState("Calendar");
 
@@ -38,10 +40,11 @@ const Analysis = ({ authService, taskDatabase }) => {
         });
     }, [authService, history]);
 
-    useEffect(() => {
+    const dailyData = useCallback(() => {
         const dateValue = {
             year: selectedDate.format("YYYY"),
-            month: selectedDate.format("MMM"),
+            month: selectedDate.format("Mo"),
+            weekOfYear: selectedDate.format("W"),
             day: selectedDate.format("D")
         };
 
@@ -52,14 +55,48 @@ const Analysis = ({ authService, taskDatabase }) => {
         return () => stopSync();
     }, [selectedDate, taskDatabase, userId]);
 
+    const weeklyData = useCallback(() => {
+        const dateValue = {
+            year: selectedDate.format("YYYY"),
+            month: selectedDate.format("Mo"),
+            weekOfYear: selectedDate.format("W")
+        };
+
+        const stopSync = taskDatabase.syncWeekLists(userId, dateValue, lists => {
+            setWeeklyList(lists);
+        });
+
+        return () => stopSync();
+    }, [selectedDate, taskDatabase, userId]);
+
+    const monthlyData = useCallback(() => {
+        const dateValue = {
+            year: selectedDate.format("YYYY"),
+            month: selectedDate.format("Mo"),
+            weekOfYear: selectedDate.format("W")
+        };
+
+        const stopSync = taskDatabase.syncMonthLists(userId, dateValue, lists => {
+            setMonthlyList(lists);
+        });
+
+        return () => stopSync();
+    }, [selectedDate, taskDatabase, userId]);
+
+    useEffect(() => {
+        mainItem === "Daily" && dailyData();
+        mainItem === "Weekly" && weeklyData();
+        mainItem === "Monthly" && monthlyData();
+    }, [dailyData, mainItem, monthlyData, weeklyData]);
+
     return (
         <section className={styles.analysis}>
             <Header onLogout={onLogout} path={history} />
             <section className={styles.container}>
                 {mainItem === "Calendar" && <Calendar value={selectedDate} onChange={setSelectedDate} visible={"visible"} />}
                 {mainItem === "Daily" && <Daily lists={toDoLists} />}
-                {mainItem === "Weekly" && <Weekly />}
-                {mainItem === "Monthly" && <Monthly />}
+                {mainItem === "Weekly" && <Weekly lists={weeklyList} />}
+                {mainItem === "Monthly" && <Monthly lists={monthlyList} />}
             </section>
             <Nav getMain={getMainItem} mainItem={mainItem} />
             <Footer />

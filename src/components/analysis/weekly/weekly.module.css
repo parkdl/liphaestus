@@ -1,0 +1,167 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.controler {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.dropdown {
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.dropdown_contents {
+    display: none;
+    position: absolute;
+    border-radius: 5px 5px 15px 15px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: #f4cbda;
+}
+
+.dropdown_contents li {
+    color: black;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.show_dropdown {
+    display: block;
+}
+
+.finished {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    color: red;
+}
+
+.finished::after {
+    content: "\25BC";
+    width: 1rem;
+    height: 1rem;
+}
+
+.pomodoro {
+    width: 40%;
+    border: 1px solid black;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    color: blue;
+}
+
+.main {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.default h2,
+.mainChart h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.default {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart {
+    width: 60%;
+    height: 100%;
+}
+
+.mainChart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+}
+
+.pomodoro_time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    font-size: 4rem;
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
+@media screen and (max-width: 65rem) {
+    .default h2,
+    .mainChart h2 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .chart {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 35rem) {
+    .controler {
+        margin-bottom: 1rem;
+    }
+
+    .dropdown {
+        width: 50%;
+    }
+    .finished {
+        font-size: 1.25rem;
+        padding: 0.25rem;
+    }
+
+    .dropdown_contents li {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .pomodoro {
+        width: 50%;
+        font-size: 1.25rem;
+        padding: 0.25rem;
+    }
+
+    .default h2,
+    .mainChart h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .chart {
+        width: 100%;
+    }
+
+    .pomodoro_time {
+        font-size: 2rem;
+    }
+}
