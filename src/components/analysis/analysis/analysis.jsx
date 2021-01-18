@@ -72,8 +72,7 @@ const Analysis = ({ authService, taskDatabase }) => {
     const monthlyData = useCallback(() => {
         const dateValue = {
             year: selectedDate.format("YYYY"),
-            month: selectedDate.format("Mo"),
-            weekOfYear: selectedDate.format("W")
+            month: selectedDate.format("Mo")
         };
 
         const stopSync = taskDatabase.syncMonthLists(userId, dateValue, lists => {
