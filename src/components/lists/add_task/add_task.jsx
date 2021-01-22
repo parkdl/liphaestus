@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import styles from "./add_task.module.css";
 
-const AddTask = ({ visible, addTask }) => {
+const AddTask = ({ addTask, visible }) => {
     const selectOption = {
         category: {
             items: [

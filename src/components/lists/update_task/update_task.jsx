@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import styles from "./update_task.module.css";
 
-const UpdataTask = ({ visible, addTask, list }) => {
+const UpdataTask = ({ addTask, list, visible }) => {
     const selectOption = {
         category: {
             items: [
@@ -71,7 +71,9 @@ const UpdataTask = ({ visible, addTask, list }) => {
         setPriorityItem({
             name: list.priority
         });
-    }, [list.category, list.priority]);
+
+        taskRef.current.value = list.task;
+    }, [list.category, list.priority, list.task]);
 
     return (
         <section className={`${styles.container} ${styles[visible]}`}>
@@ -87,7 +89,7 @@ const UpdataTask = ({ visible, addTask, list }) => {
                             <li
                                 key={item.id}
                                 id={item.id}
-                                className={`${styles.item} ${categoryItem.name === item.name && `${styles.selected}`} `}
+                                className={`${styles.item} ${categoryItem.name === item.data && `${styles.selected}`} `}
                                 onClick={() => selectCategory(item)}
                             >
                                 {item.name}

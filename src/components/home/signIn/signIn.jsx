@@ -36,7 +36,7 @@ const SignIn = ({ click, onSignIn, onGoogle }) => {
                     <span>Or Sign In</span>{" "}
                 </p>
                 <button className={styles.googleBtn} onClick={onGoogle}>
-                    Google로 로그인
+                    Google로 시작하기
                 </button>
             </article>
             <article className={styles.goSignUp} onClick={click}>

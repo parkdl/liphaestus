@@ -21,8 +21,7 @@
         flex-basis: 50%;
         flex-direction: column;
     }
-
-    .btns {
+    .close_tab {
         display: none;
     }
 }
@@ -51,7 +50,7 @@
         align-items: center;
     }
 
-    .btns {
+    .close_tab {
         display: none;
     }
 }
@@ -69,32 +68,26 @@
         width: 100%;
         height: 100%;
         max-width: 100%;
+        margin-bottom: 6rem;
+        overflow-y: scroll;
     }
     .set_lists {
         width: 100%;
+        height: 100%;
         flex-basis: 0;
         flex-direction: column;
-    }
-    .btns {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 0.25rem;
-        padding: 0 1rem;
+        position: relative;
     }
 
-    .btns button {
-        font-size: 1rem;
-        color: white;
-        padding: 5px;
-        border-radius: 5px;
+    .close_tab {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        display: none;
     }
 
-    .btns .add {
-        background-color: cornflowerblue;
-    }
-
-    .btns .calendar {
-        background-color: black;
+    .close_visible {
+        display: block;
     }
 }

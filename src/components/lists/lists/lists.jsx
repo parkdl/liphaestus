@@ -10,6 +10,7 @@ import Footer from "../../footer/footer";
 import Header from "../../header/header";
 import styles from "./lists.module.css";
 import UpdataTask from "../update_task/update_task";
+import ListsNav from "../lists_nav/lists_nav";
 
 const Lists = ({ authService, taskDatabase }) => {
     const history = useHistory();
@@ -18,30 +19,31 @@ const Lists = ({ authService, taskDatabase }) => {
 
     const [selectedDate, setSelectedDate] = useState(moment());
 
-    const [onAddTask, setAddTask] = useState("hidden");
-    const [onCalendar, setCalendar] = useState("hidden");
     const [toDoLists, setToDoLists] = useState({});
     const [onUpdate, setUpdate] = useState(false);
     const [updateData, setUpdateData] = useState({});
-
+    const [onAddTask, setAddTask] = useState("hidden");
+    const [onCalendar, setCalendar] = useState("hidden");
     const [userId, setUserId] = useState(historyState && historyState.id);
 
     const onLogout = () => {
         authService.logout();
     };
 
-    const onClick = event => {
-        const value = event.target.innerHTML;
-        switch (value) {
-            case "Add":
-                onAddTask === "hidden" ? setAddTask("visible") : setAddTask("hidden");
-                break;
-            case "Calendar":
-                onCalendar === "hidden" ? setCalendar("visible") : setCalendar("hidden");
-                break;
-            default:
-                return;
+    const getSeletedTab = text => {
+        if (text === "addTask") {
+            onAddTask === "hidden" && setAddTask("visible");
+            setCalendar("hidden");
+        } else if (text === "calendar") {
+            onCalendar === "hidden" && setCalendar("visible");
+            setAddTask("hidden");
         }
+    };
+
+    const onCloseTab = () => {
+        setAddTask("hidden");
+        setCalendar("hidden");
+        setUpdate(false);
     };
 
     const finishedOrTimer = item => {
@@ -75,11 +77,13 @@ const Lists = ({ authService, taskDatabase }) => {
         };
         taskDatabase.saveTask(userId, dateValue, task);
         setUpdate(false);
+        setAddTask("hidden");
         setUpdateData({});
     };
 
     const getUpdate = list => {
         setUpdateData(list);
+        setAddTask("visible");
         setUpdate(true);
     };
 
@@ -140,26 +144,26 @@ const Lists = ({ authService, taskDatabase }) => {
 
             <section className={styles.lists_container}>
                 <section className={styles.set_lists}>
-                    <div className={styles.btns}>
-                        <button className={styles.calendar} onClick={onClick}>
-                            <span>Calendar</span>
-                        </button>
-                        <button className={styles.add} onClick={onClick}>
-                            <span>Add</span>
-                        </button>
-                    </div>
                     {!onUpdate ? (
                         <AddTask visible={onAddTask} addTask={addOrUpdateTask} />
                     ) : (
                         <UpdataTask visible={onAddTask} addTask={addOrUpdateTask} list={updateData} />
                     )}
 
-                    <Calendar value={selectedDate} onChange={setSelectedDate} visible={onCalendar} />
+                    <Calendar visible={onCalendar} value={selectedDate} onChange={setSelectedDate} />
+
+                    <div
+                        className={`${styles.close_tab} ${(onAddTask === "visible" || onCalendar === "visible") && `${styles.close_visible}`}`}
+                        onClick={onCloseTab}
+                    >
+                        <i className="fas fa-times"></i>
+                    </div>
                 </section>
 
                 <DisplayLists lists={toDoLists} deleteTask={deleteList} update={getUpdate} compare={compareDate} finished={finishedOrTimer} />
             </section>
 
+            <ListsNav select={getSeletedTab} />
             <Footer />
         </section>
     );

@@ -3,7 +3,7 @@ import styles from "./calendar.module.css";
 import CalendarHeader from "./calendar_header";
 import moment from "moment";
 
-const Calendar = ({ value, onChange, visible }) => {
+const Calendar = ({ visible, value, onChange }) => {
     const [calendar, setCalendar] = useState([]);
 
     useEffect(() => {

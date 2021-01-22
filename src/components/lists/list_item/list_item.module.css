@@ -137,3 +137,13 @@
 .end span {
     cursor: pointer;
 }
+
+@media screen and (max-width: 35rem) {
+    .list {
+        padding: 0.5rem;
+    }
+
+    .mid {
+        padding: 0 0.5rem;
+    }
+}
