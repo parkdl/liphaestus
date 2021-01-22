@@ -4,8 +4,8 @@ import Footer from "../../footer/footer";
 import Header from "../../header/header";
 import moment from "moment";
 import styles from "./analysis.module.css";
-import Calendar from "../../calendar/calendar";
-import Nav from "../../nav/nav";
+import Calendar from "../calendar_analysis/calendar";
+import Nav from "../nav/nav";
 import Daily from "../daily/daily";
 import Weekly from "../weekly/weekly";
 import Monthly from "../monthly/monthly";
@@ -92,7 +92,7 @@ const Analysis = ({ authService, taskDatabase }) => {
         <section className={styles.analysis}>
             <Header onLogout={onLogout} path={history} />
             <section className={styles.container}>
-                {mainItem === "Calendar" && <Calendar value={selectedDate} onChange={setSelectedDate} visible={"visible"} />}
+                {mainItem === "Calendar" && <Calendar value={selectedDate} onChange={setSelectedDate} />}
                 {mainItem === "Daily" && <Daily lists={toDoLists} />}
                 {mainItem === "Weekly" && <Weekly lists={weeklyList} />}
                 {mainItem === "Monthly" && <Monthly lists={monthlyList} />}

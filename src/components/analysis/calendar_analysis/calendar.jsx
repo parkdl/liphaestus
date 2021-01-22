@@ -3,7 +3,7 @@ import styles from "./calendar.module.css";
 import CalendarHeader from "./calendar_header";
 import moment from "moment";
 
-const Calendar = ({ visible, value, onChange }) => {
+const Calendar = ({ value, onChange }) => {
     const [calendar, setCalendar] = useState([]);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const Calendar = ({ visible, value, onChange }) => {
     };
 
     return (
-        <section className={`${styles.container} ${styles[visible]}`}>
+        <section className={styles.container}>
             <CalendarHeader value={value} onChange={onChange} />
 
             <div className={styles.body}>
@@ -56,7 +56,7 @@ const Calendar = ({ visible, value, onChange }) => {
                     ))}
                 </ul>
                 {calendar.map((week, wi) => (
-                    <div key={wi}>
+                    <div key={wi} className={styles.day_box}>
                         {week.map((day, di) => (
                             <div key={di} className={styles.day} onClick={() => onChange(day)}>
                                 <div className={styles[dayStyles(day)]}>{day.format("D").toString()}</div>

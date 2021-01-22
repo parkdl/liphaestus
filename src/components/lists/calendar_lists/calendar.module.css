@@ -32,10 +32,15 @@
     color: blue;
 }
 
+.day_box {
+    width: 100%;
+    height: 44px;
+}
+
 .day {
     position: relative;
     width: calc(100% / 7);
-    height: 44px;
+    height: 100%;
     display: inline-block;
     padding: 0;
     margin: 0;
@@ -45,7 +50,7 @@
 }
 
 .day div {
-    height: 44px;
+    height: 100%;
     position: relative;
     color: black;
     z-index: 100;
@@ -69,8 +74,9 @@
 
 @media screen and (max-width: 35rem) {
     .container {
-        margin-top: 1rem;
         display: none;
+        height: 100%;
+        justify-content: center;
     }
     .visible {
         display: flex;

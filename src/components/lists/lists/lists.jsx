@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 
 import AddTask from "../add_task/add_task";
-import Calendar from "../../calendar/calendar";
+import Calendar from "../calendar_lists/calendar";
 import DisplayLists from "../display_lists/display_lists";
 import Footer from "../../footer/footer";
 import Header from "../../header/header";

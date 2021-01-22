@@ -119,11 +119,20 @@
     .default h2,
     .mainChart h2 {
         font-size: 3rem;
-        margin-bottom: 1rem;
     }
 
-    .chart {
-        width: 90%;
+    .finished {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .pomodoro {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .pomodoro_time {
+        font-size: 3rem;
     }
 }
 
@@ -154,7 +163,6 @@
     .default h2,
     .mainChart h2 {
         font-size: 2rem;
-        margin-bottom: 1rem;
     }
 
     .chart {
