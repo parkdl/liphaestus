@@ -14,7 +14,7 @@
 
 .lists {
     width: 100%;
-    height: 100%;
+    height: 90%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -24,6 +24,7 @@
 @media screen and (max-width: 65rem) {
     .container {
         width: 90%;
+        height: 70%;
         margin: 0 auto;
     }
 }
@@ -32,7 +33,7 @@
     .container {
         flex-basis: 0;
         width: 100%;
-        height: 90%;
+        height: 95%;
         padding: 0;
     }
 

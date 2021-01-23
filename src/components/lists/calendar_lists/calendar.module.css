@@ -72,6 +72,12 @@
     background-color: grey;
 }
 
+@media screen and (max-width: 65rem) {
+    .container {
+        height: 100%;
+    }
+}
+
 @media screen and (max-width: 35rem) {
     .container {
         display: none;

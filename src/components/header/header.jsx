@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 
 import styles from "./header.module.css";
 
-const Header = ({ onLogout, path }) => {
+const Header = memo(({ onLogout, path }) => {
     const movePath = () => {
         const pathname = path.location.pathname;
 
@@ -27,6 +27,6 @@ const Header = ({ onLogout, path }) => {
             )}
         </header>
     );
-};
+});
 
 export default Header;
