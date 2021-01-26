@@ -53,7 +53,8 @@ const Daily = ({ lists }) => {
         };
 
         const options = {
-            responsive: true,
+            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {

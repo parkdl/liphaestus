@@ -127,7 +127,7 @@ const Lists = ({ authService, taskDatabase }) => {
         const dateValue = {
             year: selectedDate.format("YYYY"),
             month: selectedDate.format("Mo"),
-            weekOfYear: moment().format("W"),
+            weekOfYear: selectedDate.format("W"),
             day: selectedDate.format("D")
         };
 

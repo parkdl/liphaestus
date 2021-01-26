@@ -80,8 +80,7 @@
 
 .default h2,
 .mainChart h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
 }
 
 .default {
@@ -93,8 +92,9 @@
 }
 
 .chart {
-    width: 60%;
-    height: 100%;
+    width: 45%;
+    height: 70%;
+    position: relative;
 }
 
 .mainChart {
@@ -118,33 +118,20 @@
 @media screen and (max-width: 65rem) {
     .default h2,
     .mainChart h2 {
-        font-size: 3rem;
-    }
-
-    .finished {
-        font-size: 1.5rem;
-        padding: 0.5rem;
-    }
-
-    .pomodoro {
-        font-size: 1.5rem;
-        padding: 0.5rem;
-    }
-
-    .pomodoro_time {
-        font-size: 3rem;
-    }
-}
-
-@media screen and (max-width: 35rem) {
-    .controler {
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
     }
 
     .dropdown {
         width: 50%;
     }
+
     .finished {
+        font-size: 1.25rem;
+        padding: 0.25rem;
+    }
+
+    .pomodoro {
+        width: 50%;
         font-size: 1.25rem;
         padding: 0.25rem;
     }
@@ -154,10 +141,23 @@
         padding: 0.5rem;
     }
 
-    .pomodoro {
-        width: 50%;
-        font-size: 1.25rem;
-        padding: 0.25rem;
+    .chart {
+        width: 55%;
+        height: 80%;
+    }
+
+    .pomodoro_time {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 35rem) {
+    .container {
+        padding-top: 1rem;
+    }
+
+    .controler {
+        margin-bottom: 1rem;
     }
 
     .default h2,
@@ -167,6 +167,7 @@
 
     .chart {
         width: 100%;
+        height: 80%;
     }
 
     .pomodoro_time {

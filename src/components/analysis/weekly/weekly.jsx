@@ -38,7 +38,7 @@ const Weekly = ({ lists }) => {
         };
 
         const options = {
-            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -86,7 +86,7 @@ const Weekly = ({ lists }) => {
         };
 
         const options = {
-            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -146,7 +146,7 @@ const Weekly = ({ lists }) => {
         };
 
         const options = {
-            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -174,7 +174,7 @@ const Weekly = ({ lists }) => {
         destructuring.forEach(list => list.finished && priorityItem[list.priority]++);
         displayPriorityChart(priorityItem);
     };
-    console.log(pomodoroTime);
+
     const getPomodoroTask = useCallback(() => {
         let timeArray = [];
         let total = 0;
@@ -249,7 +249,7 @@ const Weekly = ({ lists }) => {
                 <div className={styles.mainChart}>
                     <h2>Main - {selected}</h2>
                     <div className={styles.chart}>
-                        {selected === "category" && <Pie data={chartData.data} options={chartData.options} />}
+                        {selected === "category" && <Doughnut data={chartData.data} options={chartData.options} />}
                         {selected === "priority" && <Pie data={chartData.data} options={chartData.options} />}
                         {selected === "pomodoro" && (
                             <div className={styles.pomodoro_time}>

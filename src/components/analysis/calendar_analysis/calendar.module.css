@@ -52,13 +52,16 @@
 }
 
 .day div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     position: relative;
     color: black;
     z-index: 100;
     margin: 0 auto;
-    line-height: 5;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .day div.before {
@@ -77,8 +80,7 @@
 
 @media screen and (max-width: 65rem) {
     .day div {
-        line-height: 5;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -86,10 +88,5 @@
     .week {
         font-size: 1rem;
         font-weight: bold;
-    }
-
-    .day div {
-        font-size: 1rem;
-        line-height: 5;
     }
 }

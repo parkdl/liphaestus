@@ -38,7 +38,7 @@ const Monthly = ({ lists }) => {
         };
 
         const options = {
-            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -86,7 +86,7 @@ const Monthly = ({ lists }) => {
         };
 
         const options = {
-            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -146,7 +146,7 @@ const Monthly = ({ lists }) => {
         };
 
         const options = {
-            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
                 displayColors: false,
                 callbacks: {
