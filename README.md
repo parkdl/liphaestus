@@ -2,9 +2,10 @@
 
 ## Introduction
 
-    * 기존의 투두리스트에서 원하는 기능을 추가하여 사용하고자 개발 시작.
-    * 중점을 둔 부분은 투두리스트를 단순히 체크만해서 사용하는 것이 아닌
-      좀 더 효율적으로 사용하고 그로인해 하루의 생산성을 늘리는 것이 목적.
+-   기존의 투두리스트에서 원하는 기능을 추가하여 사용하고자 개발 시작.
+
+*   중점을 둔 부분은 투두리스트를 단순히 체크만해서 사용하는 것이 아닌
+    좀 더 효율적으로 사용하고 그로인해 하루의 생산성을 늘리는 것이 목적.
 
 ## 개발일정
 
@@ -20,7 +21,7 @@
 
     -   기본 기능
 
-          <img src="/images/listPage.png" alt="list page" width="450px" height="300px">
+          <img src="/public/images/listPage.png" alt="list page" width="450px" height="300px">
 
         -   오늘 날짜에 task를 추가하고 원하는 카테고리와 우선순위를 선택할 수 있다.
 
@@ -37,6 +38,6 @@
 
     -   기본 기능
 
-          <img src="/images/analysisPage.png" alt="analysis page" width="450px" height="300px">
+          <img src="/public/images/analysisPage.png" alt="analysis page" width="450px" height="300px">
           
           - 선택한 날짜, 주차, 월별 task 완료 여부를 차트로 표시
