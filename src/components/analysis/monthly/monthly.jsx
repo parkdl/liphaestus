@@ -174,7 +174,7 @@ const Monthly = ({ lists }) => {
         destructuring.forEach(list => list.finished && priorityItem[list.priority]++);
         displayPriorityChart(priorityItem);
     };
-    console.log(pomodoroTime);
+
     const getPomodoroTask = useCallback(() => {
         let timeArray = [];
         let total = 0;
@@ -218,7 +218,7 @@ const Monthly = ({ lists }) => {
 
         setDestructuring(taskArray);
     }, [lists]);
-    console.log(destructuring);
+
     useEffect(() => {
         getDefaultChart();
         setSelected("pomodoro");
